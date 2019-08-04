@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for post in posts %}
+    <div class="media content-section card-columns m-3 col-md-4 col-lg-3">
+        <div class="media-body">
+<!--        <img class="card-img-top" src="blog/static/images/{{ post.image }}" alt="Card image cap"> --> 
+            <a class="article-metadata my-4 mr-2" href="#">{{ post.author }}</a>
+            <small class="article-metadata my-4 text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock content %}
