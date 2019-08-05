@@ -1,18 +1,22 @@
 {% extends "blog/base.html" %}
 {% block content %}
 {% for post in posts %}
-
-    <div class="col-lg-3 col-md-6 mb-4 shadow ">
+    <div class="col-lg-3 col-md-6 mb-4 shadow text-center">
         <div class="view overlay rounded z-depth-2 mb-4 shadowed">
-                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Sample image">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Sample image">
         </div>
-        <h4 class="font-weight-bold mb-3">
-            <strong>{{ post.title }}</strong>
-        </h4>
-        <p>by <a class="font-weight-bold">{{ post.author }}</a>, {{ post.date_posted|date:"F d, Y" }}</p>
-            <p class="dark-grey-text">{{ post.content }}</p>
-            <a class="btn btn-warning btn-rounded">Read more</a>
+        <h3 class="font-weight-bold mb-3">
+            <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+        </h3>
+        <div class="container-fluid">
+            <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}">
+            <p><a class="font-weight-bold text-center">{{post.author}} </a>
+                <br>{{ post.date_posted|date:"F d, Y" }}</p>
+        </div>
+            <p class="dark-grey-text text-center">{{ post.content }}</p>
+            <a class="btn btn-warning btn-rounded" href="{% url 'post-detail' post.id %}">Read more</a>
     </div>
+
 
 
 <!--    <div class="media content-section card-columns m-3 col-md-4 col-lg-3">

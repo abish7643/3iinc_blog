@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-lg-12 col-md-12 mb-4 shadow text-center">
+        <div class="view overlay rounded z-depth-2 mb-4 shadowed">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg">
+        </div>
+        <h3 class="font-weight-bold mb-3">
+            <h3 class="">{{ object.title }}</h3>
+        </h3>
+        <div class="container-fluid">
+            <img class="rounded-circle article-img" src="{{object.author.profile.image.url}}">
+            <p><a class="font-weight-bold text-center">{{object.author}} </a>
+            <br>{{ post.date_posted|date:"F d, Y" }}</p>
+        <div>
+            {% if object.author == user %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-4" href="{% url 'post-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-4" href="{% url 'post-delete' object.id %}">Delete</a>
+            {% endif %}
+        </div>
+        </div>
+        <p class="dark-grey-text text-center">{{ object.content }}</p>
+<!--        <a class="btn btn-warning btn-rounded">Read more</a>-->
+    </div>
+</div>
+{% endblock content %}
