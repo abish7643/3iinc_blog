@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
+<h3 class="text-align-centre mb-4 container-fluid">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h3>
 {% for post in posts %}
     <div class="col-12 col-sm-8 col-md-6 col-lg-3 mb-4 shadow text-center">
         <div class="view overlay rounded z-depth-2 mb-4 shadowed">
@@ -10,7 +11,7 @@
         </h3>
         <div class="container-fluid">
             <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}">
-            <p><a class="font-weight-bold text-center" href="{% url 'user-posts' post.author.username %}">{{post.author}} </a>
+            <p><a class="font-weight-bold text-center" href="{% url 'user-posts' post.author.username %}">{{post.author}}</a>
                 <br>{{ post.date_posted|date:"F d, Y" }}</p>
         </div>
             <p class="dark-grey-text text-center">{{ post.content }}</p>
@@ -43,7 +44,7 @@
             {% endif %}
         {% endfor %}
 
-        {% if page_obj.has_next %}
+        {% if page_obj.next %}
             <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a>
             <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
         {% endif %}
